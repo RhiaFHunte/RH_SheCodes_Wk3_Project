@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      body {
+         margin: 0;
+         font-family: Arial, sans-serif;
+      }
+
+      nav {
+         width: 100%;
+         position: fixed;
+         top: 0;
+         left: 0;
+         background-color: #000000;
+         z-index: 99;
+      }
+
+      nav .logo {
+         font-size: 1.5rem;
+         font-weight: 600;
+         color: whitesmoke;
+         transition: .3s;
+         letter-spacing: 5px;
+         padding: auto;
+         padding-left: 5%;
+      }
+
+      body {
+         padding: 0;
+         margin: 0;
+         height: 100vh;
+         color: black;
+         font-family: Arial, sans-serif;
+         
+      }
+
+      nav {
+         width: 100%;
+         position: fixed;
+         top: 0;
+         left: 0;
+         background-color: #000000;
+         
+
+      }
+
+      nav .logo {
+         font-size: 1.5rem;
+         font-weight: 600;
+         letter-spacing: 5px;
+         color: whitesmoke;
+         transition: .3s;
+         padding: auto;
+         padding-left: 5%;
+
+      }
+
+      ul {
+         display: flex;
+         align-items: center;
+         gap: 1rem;
+         list-style: none;
+         font-size: 18px;
+         padding-right: 40px;
+         letter-spacing: 5px;
+         
+
+      }
+
+      ul li a {
+         padding: 0.5rem 1rem;
+         text-decoration: none;
+         font-weight: 600;
+         color: whitesmoke;
+         transition: 0.3s;
+      }
+
+      ul li a:hover {
+         text-decoration: underline;
+         text-underline-offset: 15px;
+      }
+
+      .nav__content {
+         margin: auto;
+         padding: 2px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+      }
+
+      .sliders-section {
+         display: flex;
+         justify-content:center;
+         min-height: 50px;
+         margin: 80px 30px 0; 
+         padding: min (600px);
+      }
+
+      .slider-container h3 {
+         position: absolute;
+         top: 10px; /* Adjust the top position as needed */
+         text-align: left;
+         left: 20%;
+         transform: translateX(-50%);
+         background-color: transparent;
+         color: #000; /* Set the text color to black or your preferred color */
+         padding: 0px; /* Add padding as needed */
+         z-index: 1; /* Ensure the h3 appears above the slides */
+}
+      .slider-container {
+         position: relative;
+         max-width: 400px;
+         max-height: 350px;
+         margin: 60px 10px 10px 10px;
+         padding: auto;
+         overflow: hidden;
+         display: inline-block;
+
+      }
+      
+      .slider-container:nth-child(2) {
+
+         max-width: 800px;
+      }
+
+      .slider-inner {
+         display: flex;
+         transition: transform 0.5s ease-in-out;
+      }
+
+      .slide {
+         min-width: 400;
+         min-height: 800;
+         box-sizing: border-box;
+         border-radius: 20px 20px 20px 20px;
+      }
+
+      .slide img {
+         width: 800px;
+         height:400px;
+         display: block;
+
+      }
+
+      /* First Container */
+      
+      #radio1:checked ~ .slider-inner {
+         transform: translateX(0);
+      }
+
+      #radio2:checked ~ .slider-inner {
+         transform: translateX(-100%);
+      }
+
+      #radio3:checked ~ .slider-inner {
+         transform: translateX(-200%);
+      }
+
+      .slider-nav1 {
+         position: absolute;
+         top: 90%;
+         left: 0;
+         right: 0;
+         transform: translateY(-50%);
+         display: flex;
+         justify-content: center;
+      }
+
+      .slider-radio {
+         display: none;
+      }
+
+      .slider-dot {
+         width: 12px;
+         height: 12px;
+         border-radius: 50%;
+         background-color: black;
+         margin: 0 5px;
+         cursor: pointer;
+      }
+
+      .slider-dot:hover {
+         background-color: #e9e9e9;
+      }
+
+      /* Second Container */
+
+      
+      #radio4:checked ~ .slider-inner {
+         transform: translateX(0);
+      }
+
+      #radio5:checked ~ .slider-inner {
+         transform: translateX(-100%);
+      }
+
+      #radio6:checked ~ .slider-inner {
+         transform: translateX(-200%);
+      }
+
+      .slider-nav2 {
+         position: absolute;
+         top: 90%;
+         left: 0;
+         right: 0;
+         transform: translateY(-50%);
+         display: flex;
+         justify-content: center;
+      }
+
+      .slider-dot2 {
+         width: 12px;
+         height: 12px;
+         border-radius: 50%;
+         background-color: black;
+         margin: 0 5px;
+         cursor: pointer;
+      }
+
+      .slider-dot2:hover {
+         background-color: #e9e9e9;
+      }
+      .carousel-container {
+      width: 60%;
+      overflow: hidden;
+
+      }
+
+      .center-wrapper {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+
+      }
+    .carousel-container h2{
+      text-align: center;
+    }
+
+    .carousel-slide p {
+      display: inline-block;
+      text-wrap:wrap;
+      text-align: center;
+    }
+
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      flex: 0 0 calc(100% / 3); /* Set the width for each slide to one-third of the container */
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .carousel-slide:not(:last-child) {
+      margin-right: 10px; /* You can adjust this margin to control the space between slides */
+    }
+
+    .carousel-slide img {
+      max-width: 80%;
+      max-height: 80%; /* Ensure the image takes up the full height of the fixed slide height */
+
+    } 
+
+    .carousel-arrow {
+      position: absolute;
+      top: 88%;
+      font-size: 24px;
+      cursor: pointer;
+      margin-top: -20px; /* Half of the arrow height to center vertically */
+      padding: 50px; 
+      background: none; 
+      border: none;
+      outline: none; 
+      transition:  0.3s;
+    }
+
+
+    .prev {
+      left: 180px;
+    }
+
+    .next {
+      right: 180px;
+    }
+
+    .cta__btns {
+      text-align: center;
+      }
+   
+   .button button {
+         align-items: center;
+         background-color: transparent; 
+         color: black; 
+         border: 2px solid black;         
+         padding: 10px 20px; 
+         margin-top: 5%;
+         font-weight: bold; 
+         cursor: pointer; 
+         border-radius: 35px; 
+         transition: background-color 0.3s, color 0.3s; 
+            }
+
+   .button button:hover {
+         background-color: black; /* Change background color on hover */
+         color: white; /* Change text color on hover */
+         }
+
+      .title {
+         margin-top: 10px;
+         font-size: 22px;
+         font-weight: bold;
+         text-align: center;
+      }
+      
+
+       .article-section {
+         max-width: 900px;
+         margin: 20px auto;
+      }
+
+      .latest-articles {
+         text-align: center;
+         font-size: 24px;
+         font-weight: bold;
+         margin-top: 20px; /* Adjusted margin to create a gap */
+         margin-bottom: 50px;
+      }
+
+      .article-container {
+         display: flex;
+         justify-content: space-around;
+         flex-wrap: wrap;
+         margin: 20px;
+         padding: 10px;
+
+      }
+
+      .article-inner {
+         display: flex;
+         justify-content:center;
+         margin-bottom: 20px;
+         column-gap: 5px;
+      }
+
+
+      .article-item {
+         width: 28%;
+         margin-bottom: 20px;
+         box-sizing: border-box;
+      }
+
+
+
+      
+      .article-image {
+         width: 300px;
+         height: 300px;
+         border-radius: 10px;
+      }
+
+      .article-title {
+         margin-top: 10px;
+         font-size: 12px;
+         font-weight: bold;
+         text-wrap: wrap;
+         text-align: left;
+      }
+
+
+   </style>
+</head>
+<body>
+   <nav>
+      <div class="nav__content">
+         <div class="logo"><h1>RUME.</h1></div>
+         <ul>
+            <li><a href="">HOME</a></li>
+            <li><a href="https://www.habitat.co.uk/list/home-and-furniture-sale" target="_blank">SHOP</a></li>
+            <li><a href="">BLOG</a></li>
+         </ul>
+      </div>
+   </nav>
+
+   <div class="sliders-section">
+
+   <!-- First Slider Container -->
+   <div class="slider-container" style="background-color: white; border-radius: 20px;">
+      <h3>FEATURED</h3>
+      <input type="radio" id="radio1" class="slider-radio" name="slider" checked>
+      <input type="radio" id="radio2" class="slider-radio" name="slider">
+      <input type="radio" id="radio3" class="slider-radio" name="slider">
+
+      <div class="slider-inner">
+         <div class="slide">
+            <img src="/Week 3/Assets/japandi_interior_c31f891067.jpg" alt="Image 1">
+         </div>
+         <div class="slide">
+            <img src="/Week 3/Assets/5_Add-A-Pop-of-Color-Minimalist-Living-Room-Design.jpg" alt="Image 2">
+         </div>
+         <div class="slide">
+            <img src="/Week 3/Assets/Providence-Field-30.jpeg" alt="Image 3">
+         </div>
+      </div>
+
+      <div class="slider-nav1">
+         <label for="radio1" class="slider-dot dot1"></label>
+         <label for="radio2" class="slider-dot dot2"></label>
+         <label for="radio3" class="slider-dot dot3"></label>
+      </div>
+   </div>
+
+   <!-- Second Slider Container -->
+   <div class="slider-container" style="background-color: white; border-radius: 20px;">
+      <h3>INSPIRATION</h3>
+      <input type="radio" id="radio4" class="slider-radio" name="slider">
+      <input type="radio" id="radio5" class="slider-radio" name="slider">
+      <input type="radio" id="radio6" class="slider-radio" name="slider">
+
+      <div class="slider-inner">
+         <div class="slide">
+            <img src="/Week 3/Assets/1_Dqhp5jiG8HJ-9O64F6pt2A.png " alt="Image 4">
+         </div>
+         <div class="slide">
+            <img src="/Week 3/Assets/0f0baf0413a7750f594f6b0599b905aa.jpg" alt="Image 5">
+         </div>
+         <div class="slide">
+            <img src="/Week 3/Assets/kyliefitts_theinsideatkristens_29 copy.jpeg" alt="Image 6">
+         </div>
+      </div>
+
+      <div class="slider-nav2">
+         <label for="radio4" class="slider-dot2 dot4"></label>
+         <label for="radio5" class="slider-dot2 dot5"></label>
+         <label for="radio6" class="slider-dot2 dot6"></label>
+      </div>
+   </div>
+</div>
+<br>
+   <!-- Shop by Collection Carousel -->
+   <div class="center-wrapper">
+   <div class="carousel-container">
+      <h1 class="title">SHOP BY COLLECTION</h1>
+      <button class="carousel-arrow prev" onclick="changeSlide(-1)">❮</button>
+      <div class="carousel-inner">
+         
+        <!-- Individual slide within the carousel -->
+        <div class="carousel-slide">
+
+          <img src="/Week 3/Assets/1181368_R_SET.webp" alt="Image 1">
+          <p><strong>Hendricks Velvet 3 Seater Sofa</strong> </p>
+        </div>
+        <div class="carousel-slide">
+          <img src="/Week 3/Assets/1402047_R_SET.webp" alt="Image 2">
+          <p><strong>Julien Fabric Single Seater Sofa</strong></p>
+        </div>
+        <div class="carousel-slide">
+          <img src="/Week 3/Assets/1482830_R_SET.webp" alt="Image 3">
+          <p><strong>Flora Wood Veneer 2-4 Seater Dining Table </strong></p>
+        </div>
+        <div class="carousel-slide">
+         <img src="/Week 3/Assets/9403598_R_SET.webp" alt="Image 4">
+         <p><strong>Hendricks Velvet 3 Seater Sofa</strong> </p>
+       </div>
+       <div class="carousel-slide">
+         <img src="/Week 3/Assets/9515974_R_SET.webp" alt="Image 5">
+         <p><strong>Julien Fabric Single Seater Sofa</strong></p>
+         </div>
+      </div>
+ 
+      <button class="carousel-arrow next" onclick="nextSlide()">❯</button>
+   </div>
+ 
+      <!-- Shop by Collection Carousel JS-->
+   <script>
+      let currentIndex = 0;
+      const totalSlides = document.querySelectorAll('.carousel-slide').length;
+    
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateTransform();
+      }
+    
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateTransform();
+      }
+    
+      function updateTransform() {
+        const translateXValue = `-${currentIndex * (100 / totalSlides)}%`;
+        document.querySelector('.carousel-inner').style.transform = `translateX(${translateXValue})`;
+      }
+    </script>
+</div>
+
+<div class="cta__btns">
+   <div class="button">
+     <a href="https://www.habitat.co.uk/list/home-and-furniture-sale" target="_blank">
+       <button>
+         SHOP ALL
+       </button>
+     </a>
+   </div>
+ </div>
+ <br>
+<br>
+ <h1 class="title">LATEST ARTICLES</h1>    
+   <div class="article-container">
+      <div class="article-inner">
+
+      <div class="article-item">
+         <img src="/Week 3/Assets/SPR-living-rooms-with-a-pop-of-color-7567468-recirc-3fd6a5463ed445cda1ee3f6f10adc461.jpg" alt="Image 1" class="article-image">
+         <div class="article-title">12 Home Color Palette Ideas That Are Interior Designer-Approved</div>
+      </div>
+
+      <div class="article-item">
+         <img src="/Week 3/Assets/4523-M027-bedroom-homepage-spring-haze.webp" alt="Image 2" class="article-image">
+         <div class="article-title">9 Stylish & Functional Bedroom Layout Ideas Our Designers Always Turn To</div>
+      </div>
+
+      <div class="article-item">
+         <img src="/Week 3/Assets/SPR-living-rooms-with-a-pop-of-color-7567468-recirc-3fd6a5463ed445cda1ee3f6f10adc461.jpg" alt="Image 3" class="article-image">
+         <div class="article-title">The #1 Interior Design Trend of 2024, According to 4 Interior Designers</div>
+            </div>
+          </div>
+      </div>
+   </div>
+</div>
+ 
+
+
+</body>
+</html>
